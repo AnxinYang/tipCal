@@ -1,0 +1,28 @@
+/* BOX SIZING */
+*{
+  box-sizing: border-box;
+}
+body {
+  margin: 0;
+  font-family: Arial;
+  overflow: hidden;
+  background: black;
+  background-size:  100% 3px, 3px 100%;
+}
+/* COMPONENTS */
+.main-container {
+  height: 100vh;
+  width: 100vw;
+  display: grid;
+  background: #eee;
+  grid-template-columns: 0px auto 0px;
+  grid-template-rows: 1fr 1fr;
+  grid-template-areas: ". display ." ". keypad .";
+}
+.display {
+  grid-area: display
+}
+.keypad {
+  grid-area: keypad
+}
+
