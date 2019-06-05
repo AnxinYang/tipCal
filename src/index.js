@@ -21,34 +21,21 @@ function setupSW() {
     }
 }
 
-function index() {
-    let root = cc.select('#body');
-    let mainContainer = cc.createElement('div', 'test')
-        .addClass('main-container');
-    root.appendChild(mainContainer);
-
+function setupInputs(mainContainer) {
     let display = mainContainer.add('div')
         .addClass('display');
+
     let subTotalDiv = display.add('div', 'subTotal')
         .css({
-            padding: '16px 8px 4px',
-            fontSize: '30px',
-            borderBottom: '1px dashed #555',
+            padding: '8px',
+            fontSize: '24px',
         });
     subTotalDiv.add('strong')
         .content('Subtotal:');
     subTotalDiv.add('input')
         .attr('type', 'number')
-        .css({
-            float: 'right',
-            textAlign: 'right',
-            fontWeight: 'bold',
-            background: '#ddd',
-            border: 'none',
-            padding: '0 4px',
-            fontSize: '24px',
-            width: '50%'
-        })
+        .addClass('mainNumber')
+        .addClass('mainNumberBackground')
         .on('change', function () {
             this.prop('value',(+this.value).toFixed(2))
             cc.setValue('subtotal',  Math.abs(+this.value) )
@@ -56,24 +43,15 @@ function index() {
 
     let TotalDiv = display.add('div', 'Total')
         .css({
-            padding: '16px 8px 4px',
-            fontSize: '30px',
-            borderBottom: '1px dashed #555',
+            padding: '8px',
+            fontSize: '24px',
         });
     TotalDiv.add('strong')
         .content('Total:');
     TotalDiv.add('input')
         .attr('type', 'number')
-        .css({
-            float: 'right',
-            textAlign: 'right',
-            fontWeight: 'bold',
-            background: '#ddd',
-            border: 'none',
-            padding: '0 4px',
-            fontSize: '24px',
-            width: '50%'
-        })
+        .addClass('mainNumber')
+        .addClass('mainNumberBackground')
         .on('change', function () {
             this.prop('value',(+this.value).toFixed(2))
             cc.setValue('total', Math.abs(+this.value) )
@@ -81,24 +59,14 @@ function index() {
 
     let tipDiv = display.add('div', 'Total')
         .css({
-            padding: '16px 8px 4px',
-            fontSize: '30px',
-            borderBottom: '1px dashed #555',
+            padding: '8px',
+            fontSize: '24px',
         });
     tipDiv.add('strong')
         .content('Tip:');
     tipDiv.add('span')
         .attr('type', 'number')
-        .css({
-            float: 'right',
-            textAlign: 'right',
-            fontWeight: 'bold',
-            background: '#ddd',
-            border: 'none',
-            padding: '0 4px',
-            fontSize: '24px',
-            width: '50%'
-        })
+        .addClass('mainNumber')
         .content('0.00')
         .bind('total', function (d) {
             let subtotal = cc.getValue('subtotal') || 0;
@@ -106,9 +74,12 @@ function index() {
             let tip = (total-subtotal).toFixed(2);
             this.content(`${tip} (${(+tip*100/subtotal).toFixed(2)}%)`)
         });
+}
 
-
-    let tipTable = display.add('table')
+function setupTable(mainContainer) {
+    let tableDiv = mainContainer.add('div')
+        .addClass('advice');
+    let tipTable = tableDiv.add('table')
         .css({
             width: '100%'
         });
@@ -148,6 +119,19 @@ function index() {
                 this.content((d+(d*i/100)).toFixed(2))
             })
     }
+}
+
+function index() {
+    let root = cc.select('#body');
+    let mainContainer = cc.createElement('div', 'test')
+        .addClass('main-container');
+    root.appendChild(mainContainer);
+
+    mainContainer.add('h2').content('Thank you').addClass('header');
+
+    setupInputs(mainContainer);
+    setupTable(mainContainer);
+
 
 }
 

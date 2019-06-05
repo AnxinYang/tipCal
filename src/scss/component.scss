@@ -10,19 +10,39 @@ body {
   background-size:  100% 3px, 3px 100%;
 }
 /* COMPONENTS */
+
 .main-container {
   height: 100vh;
   width: 100vw;
   display: grid;
   background: #eee;
   grid-template-columns: 0px auto 0px;
-  grid-template-rows: 1fr 1fr;
-  grid-template-areas: ". display ." ". keypad .";
+  grid-template-rows: auto auto 1fr;
+  grid-template-areas: "header header header" ". display ." ". advice .";
+}
+.header{
+  grid-area: header;
+  text-align: center;
+  margin: 4px;
+  border-bottom: 1px dashed rgb(85, 85, 85);
 }
 .display {
-  grid-area: display
+  grid-area: display;
+  border-bottom: 1px dashed rgb(85, 85, 85);
 }
-.keypad {
-  grid-area: keypad
+.advice {
+  grid-area: advice
+}
+.mainNumber {
+  float: right;
+  text-align: right;
+  font-weight: bold;
+  border: none;
+  padding: 0px 4px;
+  font-size: 24px;
+  width: 50%;
+}
+.mainNumberBackground{
+  background: rgb(221, 221, 221);
 }
 
