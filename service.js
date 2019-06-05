@@ -1,6 +1,7 @@
 const assets = [
     './',
     './main.js',
+    './main.css',
     './service.js',
     './manifest.json',
     './images/icons/icon-72x72.png',
