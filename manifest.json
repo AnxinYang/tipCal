@@ -5,8 +5,8 @@
   "background_color": "#2196f3",
   "display": "standalone",
   "orientation": "portrait",
-  "Scope": "./",
-  "start_url": "./tipCal/",
+  "Scope": "tipCal/",
+  "start_url": "tipCal/",
   "icons": [
     {
       "src": "images/icons/icon-72x72.png",
