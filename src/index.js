@@ -1,4 +1,4 @@
-import cc from './ccjs/cc';
+import cc from 'npm-ccjs-ay';
 
 
 cc.setValue('viewport', {width: window.innerWidth, height: window.innerHeight});
